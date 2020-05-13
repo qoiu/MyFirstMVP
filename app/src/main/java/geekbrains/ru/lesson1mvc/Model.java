@@ -1,21 +1,23 @@
 package geekbrains.ru.lesson1mvc;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
-public class Model extends Observable {
-    private List<Integer> mList = Arrays.asList(0,0,0);
+public class Model {
+    private List<Integer> mList = new ArrayList<>();
+
+    public int getNewElementId(){
+        int id=mList.size();
+        mList.add(id,0);
+        return id;
+    }
 
     public int getElementValueAtIndex(int _index){
         return mList.get(_index);
     }
 
-    public void setElementValueAtIndex(int _index){
-        int currentValue = mList.get(_index);
-        mList.set(_index, currentValue + 1);
-        setChanged();
-        notifyObservers();
+    public void setElementValueAtIndex(int _index,int id){
+        mList.set(_index, id);
     }
 }
 
